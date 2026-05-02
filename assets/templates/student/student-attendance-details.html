@@ -1,0 +1,226 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Location Based Attendance</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'student/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'student/assets/images/istockphoto-1216658448-612x612-removebg-preview.png' %}" type="png">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'student/assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'student/assets/css/templatemo-edu-meeting.css' %}">
+    <link rel="stylesheet" href="{% static 'student/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'student/assets/css/lightbox.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+    <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+    
+    {% comment %} Sweetalert {% endcomment %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+  </head>
+
+<body>
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="{% url 'home'%}" class="logo" style='font-size:20px;'>
+                         Location Based Attendance
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                        <li><a href="{% url 'student_dashboard' %}" >Dashboard</a></li>
+                        <li><a href="{% url 'student_profile' %}">Profile</a></li>
+                        <li><a href="{% url 'student_attendance_details' %}" class="active" >QR Details</a></li>
+                        <li ><a href="{% url 'student_record_attendance' %}" >Record Attendance</a></li>
+                        <li ><a href="{% url 'student_myattendance' %}" >My Attendance Details</a></li>
+                        <li><a href="{% url 'student_logout' %}" style="text-decoration: underline !important;">Logout</a></li>  
+                    </ul>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1">
+    <img src="{% static 'student/assets/images/analytics-plan-strategy-insight-concept.jpg' %}" alt="" style="height: 650px;">
+    <div class="video-overlay header-text ">
+        <div class="container col-12 card" style="margin-top: 170px;">
+            <table class="table table-hover " >
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  {% comment %} <th class="text-center">Date</th> {% endcomment %}
+                  <th class="text-center col-3">Class Incharge Name</th>
+                  <th class="text-center">Subject</th>
+                  <th class="text-center">Duration</th>
+                  <th class="text-center">Floor Number</th>
+                  <th class="text-center">Room Number</th>
+                  <th class="text-center">Attendance Valid From</th>
+                  <th class="text-center">Attendance Valid up to </th>
+                  <th class="text-center col-3">QR Code <i class="material-icons" style="font-size:17px">qr_code_2</i> <br> <span style="font-weight:lighter; font-size:12px;">(QR code will uploaded for each class)</span> </th>
+                  {% comment %} <th class="text-center ">Status</th> {% endcomment %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for x in i %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    {% comment %} <td class="text-center">{{d}}</td> {% endcomment %}
+                    <td class="text-center">{{x.Class_Incharge_Name}}</td>
+                    <td class="text-center">{{x.Subject_Name}}</td>
+                    <td class="text-center">{{x.Class_Duration}}</td>
+                    <td class="text-center">{{x.Class_Floor_Number}}</td>
+                    <td class="text-center">{{x.Class_Room_Number}}</td>
+                    <td class="text-center">{{x.Class_Start_Time}}</td>
+                    <td class="text-center">{{x.Class_End_Time}}</td>
+                    <td class="text-center"><a href="media/{{x.Class_QR_Code}}" download>Download</a></td>      
+                  </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </section>
+
+  <section class="contact-us text-center" id="contact" style="height:230px">
+    
+    <div class="d-flex justify-content-evenly">
+        <div style="margin-top:-90px">
+            <h5 style="color:white">Address</h5>
+            <p style="color:white">sreyas</p> 
+            <p style="color:white"> Design: <a href="https://sreyas.ac.in" target="_parent" title="free css templates">sreyas</a></p>
+        </div>
+        
+        <div style="margin-top:-90px">
+            <h6 style="color:skyblue;text-align:left;">Quick Links</h6>
+            <ul>
+              <a href="{% url 'home'%}"><li style="color:white; text-decoration:underline; text-align:left;">Home</li></a>
+              <a href="{% url 'student_login'%}"><li class="text-left" style="color:white; text-decoration:underline; text-align:left;">Student Login</li></a>
+              <a href="{% url 'teacher_login'%}"><li style="color:white; text-decoration:underline; text-align:left;">Teacher Login</li></a>
+              <a href="{% url 'aboutus'%}"><li style="color:white; text-decoration:underline; text-align:left;">About us</li></a>
+              <a href="{% url 'contactus'%}"><li style="color:white; text-decoration:underline; text-align:left;">Contact us</li></a>            </ul>
+        </div>
+        
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'student/vendor/jquery/jquery.min.js' %}"></script>
+    {% comment %} <script src="{% static 'student/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> {% endcomment %}
+
+    <script src="{% static 'student/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'student/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'student/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'student/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'student/assets/js/video.js' %}"></script>
+    <script src="{% static 'student/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'student/assets/js/custom.js' %}"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+          e.preventDefault();
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
+    </script>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <script>swal({
+                    title: "Success!",
+                    text: "{{message}}",
+                    icon: "success",
+                    button: "OK",
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                <script>swal({
+                    title: "Warning :)",
+                    text: "{{message}}",
+                    icon: "warning",
+                    button: "OK",
+            
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                <script>swal({
+                    title: "info :)",
+                    text: "{{message}}",
+                    icon: "info",
+                    button: "OK",
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <script>swal({
+                    title: "error :)",
+                    text: "{{message}}",
+                    icon: "error",
+                    button: "OK",
+                });
+                </script>
+        
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</body>
+
+</body>
+</html>

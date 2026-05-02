@@ -1,0 +1,359 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Admin </title>
+    <!-- Favicon-->
+    <link rel="icon" href="{% static 'teacher/images/istockphoto-1216658448-612x612-removebg-preview.png'%}"type="png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="{% static 'teacher/plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{% static 'teacher/plugins/node-waves/waves.css' %}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{% static 'teacher/plugins/animate-css/animate.css' %}" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="{% static 'teacher/plugins/morrisjs/morris.css' %}" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="{% static 'teacher/css/style.css' %}" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{% static 'teacher/css/themes/all-themes.css' %}" rel="stylesheet" />
+    {% comment %} Sweetalert {% endcomment %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% comment %} Graph {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">ADMIN - Add Class</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <a href="{% url 'teacher_logout' %}">
+                        <button class="btn btn-warning" style="margin-top: 16px;">Logout</button>
+                    </a>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info text-center">
+                <div class="image">
+                    <img src="{% static 'teacher/images/user.png'%}" width="48" height="48" alt="User" />
+                    <h4>Adminstrator</h4>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li >
+                        <a href="{% url 'teacher_dashboard' %}">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons"><i class="material-icons">people</i></i>
+                            <span>Student Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{% url 'teacher_add_student' %}">Add Student</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_manage_student' %}">Manage Student</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_all_students' %}">All Students</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_active_students' %}">Active Students</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">school</i>
+
+                            <span>Class Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{% url 'teacher_add_class_details' %}">Add Class Details</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_add_class_location' %}">Add Class Location</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">assignment</i>
+                            <span>Attendance Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{% url 'teacher_record_attendance' %}">Record Attendance</a>
+                            </li>
+                            <li class="active">
+                                <a href="{% url 'teacher_attendance_details' %}">Attendance Details</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_statistics_analysis' %}">Statistics Attendance Analysis</a>
+                            </li>
+                            {% comment %} <li>
+                                <a href="{% url 'teacher_graph_analysis' %}">Graph Analysis</a>
+                            </li> {% endcomment %}
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">view_list</i>
+                            <span>Load Balancing Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{% url 'teacher_load_balancing' %}">Load Balancing Details</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; Designed by<a href="https://sreyas.ac.in/">sreyas</a>.
+                </div>
+                 
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        
+    </section>
+    <section class="content">
+        <div class="container-fluid mb-5">
+            <div class="block-header">
+                <h2>Attendance Deatils >> Graph Details</h2>
+                <a href = "{% url 'teacher_attendance_details' %}"><i class="material-icons" style="margin-left:1050px; font-size:40px;">highlight_off</i></a>
+            </div>
+            
+            <div class="container "  >
+                <h4>Attendance details of <span style="text-decoration:underline; font-size:23px;"> {{cn}} </span> Class on ({{cd}})</h4>
+                <p  style = "font-size:17px;">Total Strength : <span class=" text-info" style = "font-weight:bold;">{{t}}</span> </p>
+                <p  style = "font-size:17px;">Present : <span class=" text-success" style = "font-weight:bold;">{{p}}</span> </p>
+                <p style = "font-size:17px;">Absent : <span class=" text-danger" style = "font-weight:bold;">{{a}}</span></p>
+            </div>
+
+            <canvas id="myChart" style="width:100%;max-width:500px; margin-bottom:40px !important; margin:auto;"></canvas>
+
+            <script>
+                var xValues = ["Total Strength", "Present", "Absent"];
+                var yValues = [{{t}}, {{p}}, {{a}}, 0];
+                var barColors = ["blue", "green","orange"];
+
+                new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                    },
+                    options: {
+                        legend: {display: false},
+                        title: {
+                        display: true,
+                        text: "Graph based on Particular Class"
+                        }
+                    }
+                });
+            </script>
+
+            <style>
+                .my-custom-scrollbar {
+                    position: relative;
+                    height: 200px;
+                    overflow: auto;
+                    }
+                    .table-wrapper-scroll-y {
+                    display: block;
+                    }
+                    thead {
+                        position: sticky;
+                        top: 0;
+                        background-Color:black ;
+                        color:white;
+                        font-weight:bold;
+                    }
+            </style>
+
+            <div class="table-wrapper-scroll-y my-custom-scrollbar" style="margin-bottom:100px; min-height:400px;">
+                <table class="table table-hover card" >
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Roll Number</th>
+                            <th class="text-center">Status</th>
+                    </thead>
+                    <tbody>
+                        {% for i in stu_att %}
+                            <tr>
+                                <th class="text-center">{{forloop.counter}}</th>
+                                <td class="text-center">{{i.Student_Rollnum}}</td>
+                                <td class="text-center">
+                                    {% if i.Att_Status == "present" %}
+                                    <label class="text-success">Present</label>
+                                    {% else %} 
+                                    <label class="text-danger">Absent</label>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                      {% endfor %}
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+
+        
+    </section>
+   
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'teacher/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'teacher/plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="{% static 'teacher/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static 'teacher/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'teacher/plugins/node-waves/waves.js' %}"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{% static 'teacher/plugins/jquery-countto/jquery.countTo.js' %}"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="{% static 'teacher/plugins/raphael/raphael.min.js' %}"></script>
+    <script src="{% static 'teacher/plugins/morrisjs/morris.js' %}"></script>
+
+    <!-- ChartJs -->
+    <script src="{% static 'teacher/plugins/chartjs/Chart.bundle.js' %}"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.time.js' %}"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{% static 'teacher/plugins/jquery-sparkline/jquery.sparkline.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'teacher/js/admin.js' %}"></script>
+    <script src="{% static 'teacher/js/pages/index.js' %}"></script>
+
+    <!-- Demo Js -->
+    <script src="{% static 'teacher/js/demo.js' %}"></script>
+{% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <script>swal({
+                    title: "Success!",
+                    text: "{{message}}",
+                    icon: "success",
+                    button: "OK",
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                <script>swal({
+                    title: "Warning :)",
+                    text: "{{message}}",
+                    icon: "warning",
+                    button: "OK",
+            
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                <script>swal({
+                    title: "info :)",
+                    text: "{{message}}",
+                    icon: "info",
+                    button: "OK",
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <script>swal({
+                    title: "error :)",
+                    text: "{{message}}",
+                    icon: "error",
+                    button: "OK",
+                });
+                </script>
+        
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</body>
+
+</html>

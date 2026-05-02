@@ -1,0 +1,521 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Admin </title>
+    <!-- Favicon-->
+    <link rel="icon" href="{% static 'teacher/images/istockphoto-1216658448-612x612-removebg-preview.png'%}"type="png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="{% static 'teacher/plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{% static 'teacher/plugins/node-waves/waves.css' %}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{% static 'teacher/plugins/animate-css/animate.css' %}" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="{% static 'teacher/plugins/morrisjs/morris.css' %}" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="{% static 'teacher/css/style.css' %}" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{% static 'teacher/css/themes/all-themes.css' %}" rel="stylesheet" />
+    {% comment %} Sweetalert {% endcomment %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    </style>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+
+    
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">ADMIN - Attendance Details</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <a href="{% url 'teacher_logout' %}">
+                        <button class="btn btn-warning" style="margin-top: 16px;">Logout</button>
+                    </a>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info text-center">
+                <div class="image">
+                    <img src="{% static 'teacher/images/user.png'%}" width="48" height="48" alt="User" />
+                    <h4>Adminstrator</h4>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li >
+                        <a href="{% url 'teacher_dashboard' %}">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="menu-toggle">
+                                                        <i class="material-icons">manage_accounts</i>
+
+                            <span>Student Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{% url 'teacher_add_student' %}">Add Student</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_manage_student' %}">Manage Student</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_all_students' %}">All Students</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_active_students' %}">Active Students</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li >
+                        <a href="#" class="menu-toggle">
+                                                        <i class="material-icons">school</i>
+
+                            <span>Class Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li >
+                                <a href="{% url 'teacher_add_class_details' %}">Add Class Details</a>
+                            </li>
+                            <li >
+                                <a href="{% url 'teacher_add_class_location' %}">Add Class Location</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">assignment</i>
+                            <span>Attendance Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{% url 'teacher_record_attendance' %}">Record Attendance</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'teacher_attendance_details' %}">Attendance Details</a>
+                            </li>
+                            <li class="active">
+                                <a href="{% url 'teacher_statistics_analysis' %}">Statistics Attendance Analysis</a>
+                            </li>
+                            {% comment %} <li>
+                                <a href="{% url 'teacher_graph_analysis' %}">Graph Analysis</a>
+                            </li> {% endcomment %}
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">view_list</i>
+                            <span>Load Balancing Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{% url 'teacher_load_balancing' %}">Load Balancing Details</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; Designed by<a href="https://sreyas.ac.in/">Sreyas</a>.
+                </div>
+                 
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2> Statistics Attendance Analysis</h2>
+            </div><br>
+            
+            <div style="display:flex">
+                <div>
+                    <label for="myInputName">Search With Name:</label>
+                    <div style="display:flex">
+                        <input class="form-control" style="width:220px;" type="text" id="myInputName" onkeyup="myFunction1()" placeholder="Search for Names.." title="Type in a name">
+                        {% comment %} <button style=" margin-top:3px; margin-right:40px; width:30px; height:30px">
+                            <svg xmlns="http://www.w3.org/2000/svg" style=" margin-top:3px;" width="19" height="19" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button> {% endcomment %}
+                    </div><br>
+                </div>
+                <div>
+                    <label for="myInputRolenum" style="margin-left:30px;">Search With Role Number:</label>
+                    <div style="display:flex; margin-left:30px;">
+                        <input class="form-control" style="width:220px"  type="text" id="myInputRolenum" onkeyup="myFunction2()" placeholder="Search for Rollnumber.." title="Type in a name"><br>
+                        {% comment %} <button style=" margin-top:3px; margin-right:40px; width:30px; height:30px">
+                            <svg xmlns="http://www.w3.org/2000/svg" style=" margin-top:3px;" width="19" height="19" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+
+            <table id="myTable" class="table table-hover card">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Student Name</th>
+                        <th class="text-center">Roll Number</th>
+                        <th class="text-center">Branch</th>
+                        <th class="text-center">Section </th>
+                        <th class="text-center">Attendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in x %}
+                        <tr>
+                            <th class="text-center">{{forloop.counter0|add:x.start_index}}</th>
+                            <td class="text-center">{{i.Student_Name}}</td>
+                            <td class="text-center">{{i.Student_RollNumber}}</td>
+                            <td class="text-center">{{i.Student_Branch}}</td>
+                            <td class="text-center">{{i.Student_Section}}</td>
+                            <td class="text-center text-success"><a href = "{% url 'teacher_student_statistic' i.Student_Id %}" title ="View Attendance in detail" class="btn btn-info">View  <i class="material-icons">visibility</i></a></td>
+                        </tr>
+                    {% endfor %}
+            </tbody>
+            {% comment %} <div id="quick-view">
+                <div id ='myModal' class="modal" style="margin-left: 150px;">
+                    <div class="modal-content" style="width: 550px; margin-top:100px;">
+                        <span class="close">&times;</span>
+                        <div class="container "  >
+                            <p style = "font-size:25px;">Attendance details of  <span class="model-name" style = "font-weight:bold;"></span></p><br>
+                            <h6 style = "font-size:18px;">No of Classes Conducted : <span class="text-info  model-count" style="font-weight:bold;"></span> </h6>
+                            <h6 style = "font-size:18px;">No of Classes Attended : <span class="text-success model-atten" style="font-weight:bold;"></span></h6>
+                            <h6 style = "font-size:18px;">No of Classes Absent : <span class="text-danger model-absent" style="font-weight:bold;"></span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+            
+            </table>   
+            {% comment %} Pagination start {% endcomment %}
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination ml-2">
+                        {% if x.has_previous %}
+                            <!-- <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li> -->
+                            <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ x.previous_page_number }}">Previous</a></li>
+                        {% endif %}
+                        {% if x.has_next %}
+                        <li class="page-item"><a class="page-link bg-info text-white" href="?page={{ x.next_page_number }}">Next</a></li>
+                        <!-- <li class="page-item"><a class="page-link" href="?page={{ r.paginator.num_pages }}">Last &raquo;</a></li> -->
+                        {% endif %}
+                    </ul>
+                    Page {{ x.number }} of {{ x.paginator.num_pages }}.
+                </nav>
+            {% comment %} Pagination End {% endcomment %}
+                <script>
+                    function myFunction1() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInputName");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                        }       
+                    }
+                    }
+                
+                    function myFunction2() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("myInputRolenum");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 1; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            } else {
+                            tr[i].style.display = "none";
+                            }
+                        }       
+                        }
+                    }
+
+                    function myFunction3() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("myInputMonth");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 4; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[4];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            } else {
+                            tr[i].style.display = "none";
+                            }
+                        }       
+                        }
+                    }
+                </script>
+            
+            {% comment %} <script>
+                $(document).ready(function() {
+                    // Your code here
+                    
+                    $(document).on('click', '.quick-view', function() {
+                        console.log('outside');
+                        var id = $(this).data('id');
+                        $.ajax({
+                            url: '/quick-view1',
+                            type: 'GET',
+                            data: {'id': id}, // Use the variable 'id' instead of hardcoded value '1'
+                            success: function(data) {
+                                console.log('inside');
+                                console.log(data);
+                                details(data);
+                            }
+                        });
+                    });
+                    
+                    function details(info) {
+                        $('#quick-view .model-count').text(info.count);
+                        $('#quick-view .model-atten').text(info.atten);
+                        $('#quick-view .model-name').text(info.name);
+                        $('#quick-view .model-absent').text(info.absent); 
+                        $('#quick-view').show();
+                    }
+                    
+                });
+            </script> {% endcomment %}
+    </section>
+    
+            <script>
+                // Get the modal
+                var modal = document.getElementById("myModal");
+                
+                // Get the button that opens the modal
+                //var btn = document.getElementById("myBtn");
+                var btn = document.getElementsByClassName("myBtn");
+                
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                
+                // When the user clicks the button, open the modal
+                [].forEach.call(btn, function(el) {
+                el.onclick = function() {
+                    modal.style.display = "block";
+                }
+                })
+                
+                
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                modal.style.display = "none";
+                }
+                
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+                }
+            </script>
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'teacher/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'teacher/plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="{% static 'teacher/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static 'teacher/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'teacher/plugins/node-waves/waves.js' %}"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{% static 'teacher/plugins/jquery-countto/jquery.countTo.js' %}"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="{% static 'teacher/plugins/raphael/raphael.min.js' %}"></script>
+    <script src="{% static 'teacher/plugins/morrisjs/morris.js' %}"></script>
+
+    <!-- ChartJs -->
+    <script src="{% static 'teacher/plugins/chartjs/Chart.bundle.js' %}"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'teacher/plugins/flot-charts/jquery.flot.time.js' %}"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{% static 'teacher/plugins/jquery-sparkline/jquery.sparkline.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'teacher/js/admin.js' %}"></script>
+    <script src="{% static 'teacher/js/pages/index.js' %}"></script>
+
+    <!-- Demo Js -->
+    <script src="{% static 'teacher/js/demo.js' %}"></script>
+{% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <script>swal({
+                    title: "Success!",
+                    text: "{{message}}",
+                    icon: "success",
+                    button: "OK",
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                <script>swal({
+                    title: "Warning :)",
+                    text: "{{message}}",
+                    icon: "warning",
+                    button: "OK",
+            
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                <script>swal({
+                    title: "info :)",
+                    text: "{{message}}",
+                    icon: "info",
+                    button: "OK",
+                });
+                </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <script>swal({
+                    title: "error :)",
+                    text: "{{message}}",
+                    icon: "error",
+                    button: "OK",
+                });
+                </script>
+        
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</body>
+
+</html>

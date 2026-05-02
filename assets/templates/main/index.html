@@ -1,0 +1,272 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Location Based Attendance</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'student/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'student/assets/images/istockphoto-1216658448-612x612-removebg-preview.png' %}" type="png">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'student/assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'student/assets/css/templatemo-edu-meeting.css' %}">
+    <link rel="stylesheet" href="{% static 'student/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'student/assets/css/lightbox.css' %}">
+    {% comment %} Sweetalert {% endcomment %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  </head>
+
+<body>
+
+  <!-- Sub Header -->
+
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="{% url 'home'%}" class="logo" style='font-size:20px;'>
+                         Location Based Attendance
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                        <li><a href="{% url 'home'%}" class="active">Home</a></li>
+                        <li><a href="{% url 'student_login'%}">Student Login</a></li>
+                        <li ><a href="{% url 'teacher_login'%}">Teacher Login</a></li>
+                        <li><a href="{% url 'contactus'%}">Contact Us</a></li>
+                        <li><a href="{% url 'aboutus'%}">About Us</a></li>  
+                    </ul>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1">
+      <video autoplay muted loop id="bg-video">
+          <source src="{% static 'student/assets/images/pexels-max-fischer-5198159-3840x2160-50fps.mp4' %}" type="video/mp4" />
+      </video>
+
+      <div class="video-overlay header-text">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="caption">
+              <h6>Hello Students</h6>
+              <h2>Welcome to Education</h2>
+              <div class="main-button-red">
+                  <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+              </div>
+          </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </section>
+  <!-- ***** Main Banner Area End ***** -->
+
+  <section class="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-service-item owl-carousel">
+          
+            <div class="item">
+              <div class="icon">
+                <img src="{% static 'student/assets/images/service-icon-01.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Best Education</h4>
+                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="icon">
+                <img src="{% static 'student/assets/images/service-icon-02.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Best Teachers</h4>
+                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="icon">
+                <img src="{% static 'student/assets/images/service-icon-03.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Best Students</h4>
+                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="icon">
+                <img src="{% static 'student/assets/images/service-icon-02.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Online Meeting</h4>
+                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="icon">
+                <img src="{% static 'student/assets/images/service-icon-03.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Best Networking</h4>
+                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="apply-now" id="apply"  style="display: flex; flex-direction:row !important;">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12 align-self-center">
+          <div class="row ">
+            <div class="col-6" >
+              <div class="item">
+                <h3>APPLY FOR BACHELOR DEGREE</h3>
+                <p>You are allowed to use this edu meeting CSS template for your school or university or business. You can feel free to modify or edit this layout.</p>
+                <div class="main-button-red">
+                  <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+              </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="item">
+                <h3>APPLY FOR BACHELOR DEGREE</h3>
+                <p>You are not allowed to redistribute the template ZIP file on any other template website. Please contact us for more information.</p>
+                <div class="main-button-yellow">
+                  <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="our-courses" id="courses" style="height: 1px !important;">
+    
+    <hr style="color:white">
+   <section class="contact-us text-center" id="contact">
+    
+    <div class="d-flex justify-content-evenly">
+        <div style="margin-top:-90px; margin-bottom:25px;">
+            <h5 style="color:white">Address</h5>
+            <p style="color:white">SREYAS INSTITUTE OF ENGINEERING AND TECHNOLOGY
+              TATTIANNARAM, NAGOLE, HYDERABAD - 500 088, TELANGANA, INDIA
+            </p> n
+            <p style="color:white"> Designed by students</p>
+        </div>
+        
+        <div style="margin-top:-90px; margin-bottom:25px">
+            <h6 style="color:skyblue;text-align:left;">Quick Links</h6>
+            <ul>
+                <a href="{% url 'home'%}"><li style="color:white; text-decoration:underline; text-align:left;">Home</li></a>
+                <a href="{% url 'student_login'%}"><li class="text-left" style="color:white; text-decoration:underline; text-align:left;">Student Login</li></a>
+                <a href="{% url 'teacher_login'%}"><li style="color:white; text-decoration:underline; text-align:left;">Teacher Login</li></a>
+                <a href="{% url 'aboutus'%}"><li style="color:white; text-decoration:underline; text-align:left;">About us</li></a>
+                <a href="{% url 'contactus'%}"><li style="color:white; text-decoration:underline; text-align:left;">Contact us</li></a>
+            </ul>
+        </div>
+    </div>
+  </section>
+  </section>
+
+
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'student/vendor/jquery/jquery.min.js' %}"></script>
+    {% comment %} <script src="{% static 'student/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> {% endcomment %}
+
+    <script src="{% static 'student/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'student/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'student/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'student/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'student/assets/js/video.js' %}"></script>
+    <script src="{% static 'student/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'student/assets/js/custom.js' %}"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+          e.preventDefault();
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
+    </script>
+</body>
+
+</body>
+</html>

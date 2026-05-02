@@ -1,0 +1,212 @@
+{% load static %}
+
+
+<!DOCTYPE html><html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Location Based Attendance</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'student/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'student/assets/images/istockphoto-1216658448-612x612-removebg-preview.png' %}" type="png">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'student/assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'student/assets/css/templatemo-edu-meeting.css' %}">
+    <link rel="stylesheet" href="{% static 'student/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'student/assets/css/lightbox.css' %}">
+    {% comment %} Sweetalert {% endcomment %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>
+
+<body>
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="{% url 'home'%}" class="logo" style='font-size:20px;'>
+                         Location Based Attendance
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                        <li><a href="{% url 'home'%}">Home</a></li>
+                        <li><a href="{% url 'student_login'%}">Student Login</a></li>
+                        <li ><a href="{% url 'teacher_login'%}" class="active">Teacher Login</a></li>
+                        <li><a href="{% url 'contactus'%}" >Contact Us</a></li>
+                        <li><a href="{% url 'aboutus'%}">About Us</a></li>  
+                    </ul>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+      <source src="{% static 'student/assets/images/laptop-1058.mp4'%}" type="video/mp4" />
+    </video>
+    <div class="video-overlay header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <form method="post" name = 'studLform' enctype='multipart/form-data'>
+                      {% csrf_token %}
+                        <div class="caption card" style="width:300px; height:370px; margin-top:70px; margin-left:450px !important; background-color:rgb(213, 215, 218); border-top-left-radius: 15px 15px; border-top-right-radius: 15px 15px; border-bottom-left-radius: 15px 15px; border-bottom-right-radius: 15px 15px;">
+                            <h1 class="mt-3">Login</h1><hr>
+                            <label for="teacherid" style="text-align:left; margin-left:9px;">User Id:</label>
+                            <input class="form-control" type="text" name="teacherId" id = 'teacherid' placeholder="Enter your Id" style=" margin-left:9px; width:280px; border-top-left-radius: 9px 9px; border-top-right-radius: 9px 9px; border-bottom-left-radius: 9px 9px; border-bottom-right-radius: 9px 9px;" required><br>
+                            <label for="tpwd" style="text-align:left; margin-left:9px;">Password:</label>
+                            <input class="form-control" type="password" name="tPwd" id = 'tpwd' placeholder="Enter your Password" style=" margin-left:9px; width:280px; border-top-left-radius: 9px 9px; border-top-right-radius: 9px 9px; border-bottom-left-radius: 9px 9px; border-bottom-right-radius: 9px 9px;" required><br>
+                            <a href="{% url 'teacher_forgot_password' %}">Forgot Password</a>
+                            <input type='submit' class='btn btn-primary m-auto' value = 'Login'>
+                          </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+      </div>
+    </div>
+  </section> 
+
+ 
+
+  <section class="contact-us text-center" id="contact" style="height:230px">
+    
+    <div class="d-flex justify-content-evenly">
+        <div style="margin-top:-90px">
+            <h5 style="color:white">Address</h5>
+            <p style="color:white">Sreyas</p> 
+            <p style="color:white"> Design: <a href="https://sreyas.ac.in" target="_parent" title="free css templates">Sreyas</a></p>
+        </div>
+        
+        <div style="margin-top:-90px">
+            <h6 style="color:skyblue;text-align:left;">Quick Links</h6>
+            <ul>
+              <a href="{% url 'home'%}"><li style="color:white; text-decoration:underline; text-align:left;">Home</li></a>
+              <a href="{% url 'student_login'%}"><li class="text-left" style="color:white; text-decoration:underline; text-align:left;">Student Login</li></a>
+              <a href="{% url 'teacher_login'%}"><li style="color:white; text-decoration:underline; text-align:left;">Teacher Login</li></a>
+              <a href="{% url 'aboutus'%}"><li style="color:white; text-decoration:underline; text-align:left;">About us</li></a>
+              <a href="{% url 'contactus'%}"><li style="color:white; text-decoration:underline; text-align:left;">Contact us</li></a>            </ul>
+        </div>
+        
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'student/vendor/jquery/jquery.min.js' %}"></script>
+    {% comment %} <script src="{% static 'student/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> {% endcomment %}
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <script>swal({
+                title: "Success!",
+                text: "{{message}}",
+                icon: "success",
+                button: "OK",
+            });
+            </script>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <script>swal({
+                title: "Warning :)",
+                text: "{{message}}",
+                icon: "warning",
+                button: "OK",
+        
+            });
+            </script>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <script>swal({
+                title: "info :)",
+                text: "{{message}}",
+                icon: "info",
+                button: "OK",
+            });
+            </script>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <script>swal({
+                title: "error :)",
+                text: "{{message}}",
+                icon: "error",
+                button: "OK",
+            });
+            </script>
+    
+        {% endif %}
+    {% endfor %}
+{% endif %}
+    <script src="{% static 'student/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'student/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'student/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'student/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'student/assets/js/video.js' %}"></script>
+    <script src="{% static 'student/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'student/assets/js/custom.js' %}"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+          e.preventDefault();
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
+    </script>
+   
+</body>
+
+</body>
+</html>
