@@ -6,7 +6,7 @@ This project helps institutions reduce manual attendance processes, improve effi
 
 ---
 
-##Screenshots
+## Screenshots
 
 <img width="1366" height="673" alt="Screenshot 1" src="https://github.com/user-attachments/assets/133a3981-edea-4e37-9960-34ac4942dfbd" />
 
