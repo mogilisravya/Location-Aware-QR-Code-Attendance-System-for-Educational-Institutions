@@ -1,10 +1,18 @@
 # Location-Aware QR Code Attendance System for Educational Institutions
 
-## Overview
-
 The Location-Aware QR Code Attendance System is a web-based application developed for educational institutions to simplify and secure student attendance management. The system uses QR code scanning along with real-time location verification to ensure accurate attendance tracking.
 
 This project helps institutions reduce manual attendance processes, improve efficiency, and prevent proxy attendance.
+
+---
+
+##Screenshots
+
+<img width="1366" height="673" alt="Screenshot 1" src="https://github.com/user-attachments/assets/133a3981-edea-4e37-9960-34ac4942dfbd" />
+
+<img width="1366" height="677" alt="Screenshot 2" src="https://github.com/user-attachments/assets/d19a1d6f-3107-41c3-b882-9c8b24e177a0" />
+
+<img width="1366" height="624" alt="Screenshot 3" src="https://github.com/user-attachments/assets/8e9e85db-c7fd-4d85-9bfd-2b90ecf52141" />
 
 ---
 
